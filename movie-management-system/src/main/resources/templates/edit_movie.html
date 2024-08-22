@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/movies}">Movie Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/movies/new}">New Movie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/movies}">Movies</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br /><br />
+<div class="container row col-md-8 offset-md-2">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-center">Edit Movie</h2>
+        </div>
+        <div class="card-body">
+            <form method="post"
+                  role="form"
+                  th:action="@{/movies/{movieId}(movieId=${movie.id})}"
+                  th:object="${movie}">
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Movie Title</label>
+                    <input class="form-control" id="title" name="title" placeholder="Enter movie title"
+                           type="text" th:field="*{title}" />
+                    <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Director</label>
+                    <input class="form-control" id="director" name="director" placeholder="Enter director's name"
+                           type="text" th:field="*{director}" />
+                    <p th:if="${#fields.hasErrors('director')}" class="text-danger" th:errors="*{director}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Release Year</label>
+                    <input class="form-control" id="releaseYear" name="releaseYear" placeholder="Enter release year"
+                           type="number" th:field="*{releaseYear}" />
+                    <p th:if="${#fields.hasErrors('releaseYear')}" class="text-danger" th:errors="*{releaseYear}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Genre</label>
+                    <input class="form-control" id="genre" name="genre" placeholder="Enter genre"
+                           type="text" th:field="*{genre}" />
+                    <p th:if="${#fields.hasErrors('genre')}" class="text-danger" th:errors="*{genre}"></p>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Actor</label>
+                    <input class="form-control" id="actor" name="actor" placeholder="Enter actor's name"
+                           type="text" th:field="*{actor}" />
+                    <p th:if="${#fields.hasErrors('actor')}" class="text-danger" th:errors="*{actor}"></p>
+                </div>
+                <button class="btn btn-primary" type="submit">Save Changes</button>
+                <a class="btn btn-secondary" th:href="@{/movies}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
